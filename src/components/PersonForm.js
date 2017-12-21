@@ -1,144 +1,95 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-import TextField from 'material-ui/TextField'
-import Radio, { RadioGroup } from 'material-ui/Radio';
-import Checkbox from 'material-ui/Checkbox'
-import Select from 'material-ui/Select';
-import Menu, { MenuItem } from 'material-ui/Menu';
-import asyncValidate from './asyncValidate'
+import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
-const validate = values => {
-    const errors = {}
-    const requiredFields = [
-        'firstName',
-        'lastName',
-        'email',
-        'favoriteColor',
-        'notes'
-    ]
-    requiredFields.forEach(field => {
-        if (!values[field]) {
-            errors[field] = 'Required'
-        }
-    })
-    if (
-        values.email &&
-        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-    ) {
-        errors.email = 'Invalid email address'
-    }
-    return errors
-}
-
-const renderTextField = ({
-    input,
-    label,
-    meta: { touched, error },
-    ...custom
-}) => (
-    <TextField
-	    hintText={label}
-	    floatingLabelText={label}
-	    errorText={touched && error}
-	    {...input}
-	    {...custom}
-  />
-)
-
-const renderCheckbox = ({ input, label }) => (
-    <Checkbox
-	    label={label}
-	    checked={input.value ? true : false}
-	    onCheck={input.onChange}
-  />
-)
-
-const renderRadioGroup = ({ input, ...rest }) => (
-    <RadioGroup
-    {...input}
-    {...rest}
-    valueSelected={input.value}
-    onChange={(event, value) => input.onChange(value)}
-  />
-)
-
-const renderSelectField = ({
-    input,
-    label,
-    meta: { touched, error },
-    children,
-    ...custom
-}) => (
-    <Select
-	    floatingLabelText={label}
-	    errorText={touched && error}
-	    {...input}
-	    onChange={(event, index, value) => input.onChange(value)}
-	    children={children}
-	    {...custom}
-  />
-)
-
-const MaterialUiForm = props => {
+const SimpleForm = props => {
     const { handleSubmit, pristine, reset, submitting } = props
     return (
-        <form onSubmit={handleSubmit}>
-      <div>
-        <Field
-          name="firstName"
-          component={renderTextField}
-          label="First Name"
-        />
-      </div>
-      <div>
-        <Field name="lastName" component={renderTextField} label="Last Name" />
-      </div>
-      <div>
-        <Field name="email" component={renderTextField} label="Email" />
-      </div>
-      <div>
-        <Field name="sex" component={renderRadioGroup}>
-          <Radio value="male" label="male" />
-          <Radio value="female" label="female" />
-        </Field>
-      </div>
-      <div>
-        <Field
-          name="favoriteColor"
-          component={renderSelectField}
-          label="Favorite Color"
-        >
-          <MenuItem value="ff0000" primaryText="Red" />
-          <MenuItem value="00ff00" primaryText="Green" />
-          <MenuItem value="0000ff" primaryText="Blue" />
-        </Field>
-      </div>
-      <div>
-        <Field name="employed" component={renderCheckbox} label="Employed" />
-      </div>
-      <div>
-        <Field
-          name="notes"
-          component={renderTextField}
-          label="Notes"
-          multiLine={true}
-          rows={2}
-        />
-      </div>
-      <div>
-        <button type="submit" disabled={pristine || submitting}>
+        <Form onSubmit={handleSubmit}>
+      <FormGroup row>
+        <Label sm={2}>First Name</Label>
+         <Col sm={10}>
+            <Field
+              name="firstName"
+              component="Input"
+              type="text"
+              placeholder="First Name"
+            />
+          </Col>
+      </FormGroup>
+      <FormGroup>
+        <Label>Last Name</Label>
+          <Field
+            name="lastName"
+            component="Input"
+            type="text"
+            placeholder="Last Name"
+          />
+      </FormGroup>
+      <FormGroup>
+        <Label>Email</Label>
+          <Field
+            name="email"
+            component="Input"
+            type="email"
+            placeholder="Email"
+          />
+      </FormGroup>
+      <FormGroup>
+        <Label>Sex</Label>
+          <Label>
+            <Field
+              name="sex"
+              component="Input"
+              type="radio"
+              value="male"
+            />{' '}
+            Male
+          </Label>
+          <Label>
+            <Field
+              name="sex"
+              component="Input"
+              type="radio"
+              value="female"
+            />{' '}
+            Female
+          </Label>
+      </FormGroup>
+      <FormGroup>
+        <Label>Favorite Color</Label>
+          <Field name="favoriteColor" component="select">
+            <option />
+            <option value="ff0000">Red</option>
+            <option value="00ff00">Green</option>
+            <option value="0000ff">Blue</option>
+          </Field>
+      </FormGroup>
+      <FormGroup>
+        <Label htmlFor="employed">Employed</Label>
+          <Field
+            name="employed"
+            id="employed"
+            component="Input"
+            type="checkbox"
+          />
+      </FormGroup>
+      <FormGroup>
+        <Label>Notes</Label>
+          <Field name="notes" component="textarea" />
+      </FormGroup>
+      <FormGroup>
+        <Button type="submit" disabled={pristine || submitting}>
           Submit
-        </button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
+        </Button>
+        <Button type="button" disabled={pristine || submitting} onClick={reset}>
           Clear Values
-        </button>
-      </div>
-    </form>
+        </Button>
+      </FormGroup>
+    </Form>
     )
 }
 
 export default reduxForm({
-    form: 'MaterialUiForm', // a unique identifier for this form
-    validate,
-    asyncValidate
-})(MaterialUiForm)
+    form: 'simple' // a unique identifier for this form
+})(SimpleForm)

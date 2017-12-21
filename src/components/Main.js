@@ -3,7 +3,6 @@ import { MemoryRouter as Router, Route } from 'react-router-dom'
 import TodoForm from './TodoForm'
 import TodoList from './TodoList'
 import Message from './Message'
-import Footer from './Footer'
 import PersonForm from './PersonForm'
 
 
@@ -22,7 +21,6 @@ class Main extends Component {
                             )
                           } 
                   />
-                  <Footer />
                   <PersonForm />
                 </div>
               </Router>
