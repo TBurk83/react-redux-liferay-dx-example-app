@@ -2,19 +2,21 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { fetchTodos, toggleTodo, deleteTodo, getVisibleTodos } from '../reducers/todo'
 import { Button } from 'reactstrap';
-import { ListGroup, ListGroupItem } from 'reactstrap';
-import FaBeer from 'react-icons/lib/fa/beer';
+import { ListGroup, ListGroupItem, ListGroupItemText  } from 'reactstrap';
+import MdDeleteForever from 'react-icons/lib/md/delete-forever';
 
 const TodoItem = ({ id, name, isComplete, toggleTodo, deleteTodo }) => (
     <ListGroupItem>
-        <input type             = "checkbox" 
-               name             = {name} 
-               id               = {name.replace(/ /g,'').toLowerCase()} 
-               checked          = {isComplete}
-               onChange         = {() => toggleTodo(id)}
-        /> 
-        {name}
-        <Button onClick={() => deleteTodo(id)}><FaBeer /></Button>
+        <ListGroupItemText>
+          <input type             = "checkbox" 
+                 name             = {name} 
+                 id               = {name.replace(/ /g,'').toLowerCase()} 
+                 checked          = {isComplete}
+                 onChange         = {() => toggleTodo(id)}
+          /> 
+          {name}
+          <Button size="sm" className="pull-right" onClick={() => deleteTodo(id)}><MdDeleteForever /></Button>
+        </ListGroupItemText> 
     </ListGroupItem>
 )
 
