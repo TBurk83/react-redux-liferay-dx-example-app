@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchTodos, toggleTodo, deleteTodo, getVisibleTodos } from '../reducers/todo'
 import { Button } from 'reactstrap';
 import { ListGroup, ListGroupItem } from 'reactstrap';
+import FaBeer from 'react-icons/lib/fa/beer';
 
 const TodoItem = ({ id, name, isComplete, toggleTodo, deleteTodo }) => (
     <ListGroupItem>
@@ -13,7 +14,7 @@ const TodoItem = ({ id, name, isComplete, toggleTodo, deleteTodo }) => (
                onChange         = {() => toggleTodo(id)}
         /> 
         {name}
-        <Button onClick={() => deleteTodo(id)}>X</Button>
+        <Button onClick={() => deleteTodo(id)}><FaBeer /></Button>
     </ListGroupItem>
 )
 
