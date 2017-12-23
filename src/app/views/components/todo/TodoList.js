@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { fetchTodos, toggleTodo, deleteTodo, getVisibleTodos } from '../reducers/todo'
+import { todoOperations } from '../todo'
 import { Button } from 'reactstrap';
 import { ListGroup, ListGroupItem, ListGroupItemText  } from 'reactstrap';
 import MdDeleteForever from 'react-icons/lib/md/delete-forever';
