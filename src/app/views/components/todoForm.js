@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { updateCurrent, saveTodo } from '../reducers/todo'
+import { todoOperations } from "../../state/ducks/todo";
 
 class TodoForm extends Component {
 
@@ -27,6 +27,13 @@ class TodoForm extends Component {
     }
 }
 
-export default connect(
-    (state) => ({ currentTodo: state.todo.currentTodo }), { updateCurrent, saveTodo }
-)(TodoForm)
+const mapStateToProps = ( state ) => ( {
+    currentTodo: state.todo.currentTodo
+} );
+
+const mapDispatchToProps = {
+    updateCurrent: todoOperations.updateCurrent,
+    saveTodo: todoOperations.saveTodo
+};
+
+export default connect( mapStateToProps, mapDispatchToProps )( TodoForm );

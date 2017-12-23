@@ -1,8 +1,8 @@
-import { TodoList } from "../views/pages";
+import { TodoList } from "../views/components";
 
 const routes = [
     {
-        path: "/:status",
+        path: "/:status?",
         component: TodoList,
         exact: true,
     }

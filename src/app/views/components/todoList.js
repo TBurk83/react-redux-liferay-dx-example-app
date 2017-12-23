@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { todoOperations } from '../todo'
+
+import { todoOperations } from "../../state/ducks/todo";
+
 import { Button } from 'reactstrap';
-import { ListGroup, ListGroupItem, ListGroupItemText  } from 'reactstrap';
+import { ListGroup, ListGroupItem, ListGroupItemText } from 'reactstrap';
 import MdDeleteForever from 'react-icons/lib/md/delete-forever';
 
 const TodoItem = ({ id, name, isComplete, toggleTodo, deleteTodo }) => (
@@ -40,7 +42,14 @@ class TodoList extends Component {
     }
 }
 
-export default connect(
-    (state, ownProps) => ({ todos: getVisibleTodos(state.todo.todos, ownProps.filter) }), 
-                { fetchTodos, toggleTodo, deleteTodo }
-)(TodoList)
+const mapStateToProps = (state, ownProps) => ({
+    todos: todoOperations.getVisibleTodos(state.todo.todos, ownProps.filter)
+});
+
+const mapDispatchToProps = {
+    fetchTodos: todoOperations.fetchTodos,
+    toggleTodo: todoOperations.toggleTodo,
+    deleteTodo: todoOperations.deleteTodo
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

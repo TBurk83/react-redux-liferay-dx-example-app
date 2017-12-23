@@ -1,9 +1,8 @@
-export default Main
-
 import React from "react";
 import { Link, Route } from "react-router-dom";
 import routes from "../../routes";
-import Styles from "./css";
+
+import {TodoForm, Message} from "../components"
 
 const App = ( ) => (
     <div>
@@ -12,6 +11,10 @@ const App = ( ) => (
             <Link to="/active">Active</Link>
             <Link to="/complete">Complete</Link>
         </header>
+
+        <Message message="" />
+
+        <TodoForm></TodoForm>
 
         { routes.map( route => (
             <Route key={ route.path } { ...route } />

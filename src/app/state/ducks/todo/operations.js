@@ -2,43 +2,42 @@
 This file defines the public interface of the todo -- what can be dispatched from components
 */
 import { getTodos, createTodo, updateTodo, destroyTodo } from './api'
-import { messageActions } from '../message'
-
-import * as actions from "./actions";
+import * as messageOperations from '../message/operations'
+import * as actions from './actions';
 
 const fetchTodos = () => {
     return (dispatch) => {
         getTodos()
-            .then(todos => dispatch(loadTodos(todos)))
+            .then(todos => dispatch(actions.loadTodos(todos)))
     }
 }
 
 const saveTodo = (name) => {
     return (dispatch) => {
-        dispatch(showMessage('Saving Todo'))
+        dispatch(messageOperations.showMessage('Saving Todo'))
         createTodo(name)
-            .then(res => dispatch(addTodo(res)))
+            .then(res => dispatch(actions.addTodo(res)))
     }
 }
 
 const toggleTodo = (id) => {
     return (dispatch, getState) => {
-        dispatch(showMessage('Saving todo update'))
+        dispatch(messageOperations.showMessage('Saving todo update'))
         const { todos } = getState().todo
         const todo = todos.find(t => t.id === id)
         const toggled = { ...todo, isComplete: !todo.isComplete }
 
         updateTodo(toggled)
-            .then(res => dispatch(replaceTodo(res)))
+            .then(res => dispatch(actions.replaceTodo(res)))
     }
 }
 
 const deleteTodo = (id) => {
     return (dispatch) => {
-        dispatch(showMessage('Removing todo'))
+        dispatch(messageOperations.showMessage('Removing todo'))
 
         destroyTodo(id)
-            .then(() => dispatch(removeTodo(id)))
+            .then(() => dispatch(actions.removeTodo(id)))
     }
 }
 
@@ -53,10 +52,13 @@ const getVisibleTodos = (todos, filter) => {
     }
 }
 
+const updateCurrent = actions.updateCurrent;
+
 export {
     fetchTodos,
 	saveTodo,
 	toggleTodo,
 	deleteTodo,
-	getVisibleTodos
+	getVisibleTodos,
+    updateCurrent
 };
