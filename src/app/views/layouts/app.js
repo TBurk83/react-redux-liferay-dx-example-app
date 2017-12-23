@@ -1,6 +1,8 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import routes from "../../routes";
+
+// import 'bootstrap/dist/css/bootstrap.css'; 
+import Styles from "./css";
 
 import {TodoForm, Message, Header, TodoList} from "../components"
 
@@ -21,8 +23,9 @@ const App = ( ) => (
         />
 
         <footer>
-            I`m the footer, I am on every page.
+            Footer
         </footer>
+        <Styles />
     </div>
 );
 export default App;

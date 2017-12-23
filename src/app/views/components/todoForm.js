@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { todoOperations } from "../../state/ducks/todo";
 
+import {Form, Input, FormGroup } from 'reactstrap';
+
 class TodoForm extends Component {
 
     handleInputChange = (evt) => {
@@ -17,12 +19,15 @@ class TodoForm extends Component {
     render() {
         const {currentTodo} = this.props
         return (
-            <form onSubmit={this.handleSubmit}>
-                <input type     = "text" 
-                       value    = { currentTodo }
-                       onChange = { this.handleInputChange }
-                />
-            </form>
+            <Form onSubmit={this.handleSubmit}>
+                <FormGroup>
+                    <Input type     = "text" 
+                           value    = { currentTodo }
+                           onChange = { this.handleInputChange }
+                           placeholder = "Todo"
+                    />
+                </FormGroup>
+            </Form>
         )
     }
 }
