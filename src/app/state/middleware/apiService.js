@@ -1,4 +1,4 @@
-import { fetch } from "../utils";
+import { fetch } from "../util";
 
 const baseUrl = typeof document === "undefined" ? "http://localhost:7777/api" : "/api";
 

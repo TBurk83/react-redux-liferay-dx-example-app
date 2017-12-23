@@ -2,7 +2,7 @@
 This file defines the public interface of the todo -- what can be dispatched from components
 */
 import { getTodos, createTodo, updateTodo, destroyTodo } from './api'
-import { showMessage } from './message'
+import { messageActions } from '../message'
 
 import * as actions from "./actions";
 

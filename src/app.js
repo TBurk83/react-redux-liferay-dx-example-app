@@ -1,12 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux'
-import Main from './components/Main';
-import store from './store'
+import React from "react";
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Main />
-  </Provider>,
-document.getElementById('@@portletNameCleaned'))
+import { render } from "react-dom";
+import { MemoryRouter as Router } from "react-router-dom";
+import { Provider as ReduxProvider } from "react-redux";
 
+import App from "./app/views/layouts/app";
+import configureStore from "./app/state/store";
+
+const reduxStore = configureStore( window.REDUX_INITIAL_DATA );
+
+const RootHtml = ( ) => (
+    <ReduxProvider store={ reduxStore }>
+        <Router>
+            <App />
+        </Router>
+    </ReduxProvider>
+);
+
+render( <RootHtml />, document.getElementById( "@@portletNameCleaned" ) );

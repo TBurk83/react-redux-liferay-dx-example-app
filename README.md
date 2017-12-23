@@ -1,3 +1,7 @@
+https://github.com/FortechRomania/react-redux-complete-example/blob/master/src/app/state/ducks/cart/reducers.js
+https://jaysoo.ca/2016/02/28/applying-code-organization-rules-to-concrete-redux-code/#module-index-and-constants
+https://github.com/alexnm/re-ducks
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
