@@ -2,7 +2,7 @@ import { TodoList } from "../views/components";
 
 const routes = [
     {
-        path: "/:status?",
+        path: "/:filter?",
         component: TodoList,
         exact: true,
     }

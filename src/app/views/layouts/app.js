@@ -1,24 +1,24 @@
 import React from "react";
-import { Link, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import routes from "../../routes";
 
-import {TodoForm, Message} from "../components"
+import {TodoForm, Message, Header, TodoList} from "../components"
 
 const App = ( ) => (
     <div>
-        <header>
-            <Link to="/">All</Link>
-            <Link to="/active">Active</Link>
-            <Link to="/complete">Complete</Link>
-        </header>
+        <Header />
 
         <Message message="" />
 
-        <TodoForm></TodoForm>
+        <TodoForm />
 
-        { routes.map( route => (
-            <Route key={ route.path } { ...route } />
-        ) ) }
+        <Route path='/:filter?' 
+           render = { 
+              ({match}) => (
+                  <TodoList filter={match.params.filter} />
+              )
+            } 
+        />
 
         <footer>
             I`m the footer, I am on every page.
