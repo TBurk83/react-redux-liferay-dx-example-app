@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:1337/todos';
+const baseUrl = 'http://192.168.1.122:1337/todos';
 
 export const getTodos = () => {
     return fetch(baseUrl)

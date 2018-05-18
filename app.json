@@ -1,0 +1,8 @@
+{
+  "expo": {
+    "sdkVersion": "27.0.0",
+    "name": "React Redux Native Boilerplate",
+    "slug": "react-redux-native-boilerplate",
+    "privacy": "public"
+  }
+}

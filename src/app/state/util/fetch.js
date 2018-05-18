@@ -1,4 +1,4 @@
-import isomorphicFetch from "isomorphic-fetch";
+import fetch from 'node-fetch';
 
 export default (url, method, body) => {
     const options = {
@@ -7,7 +7,7 @@ export default (url, method, body) => {
         body: method !== "GET" ? JSON.stringify(body) : null,
     };
 
-    return isomorphicFetch(url, options)
+    return fetch(url, options)
         .then(res => parseStatus(res.status, res.json()));
 };
 
